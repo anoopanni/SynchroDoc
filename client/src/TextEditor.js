@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 import Quill from "quill"
 import "quill/dist/quill.snow.css"
 import { io } from "socket.io-client"
@@ -16,8 +17,23 @@ const TOOLBAR_OPTIONS = [
   ]
 
 function TextEditor() {
+    const {id: documentId} = useParams();
     const [socket, setSocket] = useState();  
     const [quill, setQuill] = useState();  
+
+    // console.log(documentId);
+
+    useEffect(() => {
+      if(socket == null || quill == null) return 
+
+      socket.once("load-document", document => {
+        quill.setContents(document);
+        quill.enable();
+      })
+
+      socket.emit('get-document', documentId);
+      
+    }, [socket, quill, documentId])
 
 
     useEffect(() => {
@@ -30,7 +46,7 @@ function TextEditor() {
       socket.on('recieve-changes', handler);
 
       return () => {
-        socket.off('text-change', handler);
+        socket.off('recieve-changes', handler);
       }
     }, [socket, quill])
 
@@ -67,6 +83,8 @@ function TextEditor() {
         const editor = document.createElement("div");
         wrapper.append(editor);
         const q = new Quill(editor, { theme: "snow", modules: {toolbar: TOOLBAR_OPTIONS} });
+        q.disable();
+        q.setText('Loading....')
         setQuill(q);
     }, [])
 
