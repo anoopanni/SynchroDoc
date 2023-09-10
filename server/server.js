@@ -11,7 +11,9 @@ mongoose.connect('mongodb+srv://admin:passwordd@cluster0.vowtlsi.mongodb.net/', 
     console.log(error);
 }
 
-const io = require("socket.io")(3001, {
+port = process.env.PORT || 3001
+
+const io = require("socket.io")(port, {
     cors: {
         origin: 'http://localhost:3000',
         methods: ['GET', 'POST'],

@@ -67,7 +67,8 @@ function TextEditor() {
     }, [socket, quill])
 
     useEffect(() => {
-        const s = io("http://localhost:3001");
+        const port = process.env.PORT || 3001
+        const s = io(`http://localhost:${port}`);
         setSocket(s);
 
         return () => {
