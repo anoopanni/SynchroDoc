@@ -68,7 +68,8 @@ function TextEditor() {
 
     useEffect(() => {
         const port = process.env.PORT || 3001
-        const s = io(`http://localhost:${port}`);
+        // const s = io(`http://localhost:${port}`);
+        const s = io("https://synchrodoc-server.anoopshivayogi.com");
         setSocket(s);
 
         return () => {
