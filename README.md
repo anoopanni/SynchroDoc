@@ -6,3 +6,21 @@ With real-time editing, intuitive commenting, and robust version control, DocSyn
 
 
 Say goodbye to the confusion of emailing drafts and hello to the efficiency of unified document management. DocSync Pro: Where your ideas sync effortlessly, and your documents shine together.
+
+
+# Deployment information/commands
+
+
+1. Create app with name: synchrodoc-server 
+
+2. heroku git:remote --remote heroku-server -a synchrodoc-server
+
+3. git subtree push --prefix server heroku-server master
+
+4. Create app with name: synchrodoc-client
+
+5. heroku git:remote --remote heroku-client -a synchrodoc-client
+
+6. git subtree push --prefix client heroku-client master
+
+
