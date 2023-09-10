@@ -17,7 +17,7 @@ const io = require("socket.io")(port, {
     cors: {
         // origin: 'http://localhost:3000',
         // origin: '*',
-        origin: 'http://synchrodoc.anoopshivayogi.com/',
+        origin: 'https://synchrodoc.anoopshivayogi.com/',
         methods: ['GET', 'POST'],
     },
 })
