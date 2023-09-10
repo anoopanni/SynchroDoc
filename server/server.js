@@ -16,7 +16,8 @@ port = process.env.PORT || 3001
 const io = require("socket.io")(port, {
     cors: {
         // origin: 'http://localhost:3000',
-        origin: '*',
+        // origin: '*',
+        origin: 'http://synchrodoc.anoopshivayogi.com/',
         methods: ['GET', 'POST'],
     },
 })
